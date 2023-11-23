@@ -4,12 +4,9 @@ class VoiceToText:
     def init_listener(self):
         r = sr.Recognizer()
         with sr.Microphone(sample_rate=48000, chunk_size=1024) as source:
-            audio = r.listen(source, phrase_time_limit=5)
             try:
+                audio = r.listen(source, timeout=5, phrase_time_limit=6)
                 text = r.recognize_google(audio, language="es-ES")
-            except sr.UnknownValueError:
-                text = False
-            except sr.RequestError as e:
-                print(e)
-                text = False
+            except:
+                return False
             return text
