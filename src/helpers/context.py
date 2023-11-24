@@ -7,12 +7,12 @@ this method receives an array with the contexts, it also receives the keyword to
     extract_context(data,keywords) // ==> 'first context'
 ```
 """
-
 def extract_context(data,keywords):
-    pattern = '|'.join(map(re.escape, keywords))
-    context=''
+    context = ''
     for item in data:
-        match = re.search(pattern, item.question, re.IGNORECASE)
-        if match:
-            context+=f"{item.context}\n\n"
+        lower_question = str(item.question).lower()
+        keyword_matches = sum(keyword in lower_question for keyword in keywords)
+        threshold = len(keywords) - 1
+        if keyword_matches >= threshold:
+            context += f"{str(item.context).strip()}.\n\n\n"
     return context
