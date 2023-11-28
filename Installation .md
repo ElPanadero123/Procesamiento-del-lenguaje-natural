@@ -3,7 +3,7 @@
 ## Instalacion de dependencias
 Primero instala la dependencia Pytorch
 ```bash
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install torchvision
 ```
 Luego descarga todas las dependencias desde el archivo requirements.txt
 ```bash
